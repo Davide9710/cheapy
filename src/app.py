@@ -14,16 +14,15 @@ from linebot.v3.messaging import (
     TextMessage
 )
 from linebot.v3.exceptions import InvalidSignatureError
+from supabase import create_client, Client
 import psycopg2
 import os
-from dotenv import load_dotenv
+from item import Item
 
 app = Flask(__name__)
 
-load_dotenv()
-
 SUPABASE_URL = os.getenv('SUPABASE_URL')
-# SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
 
@@ -33,9 +32,12 @@ api_client = ApiClient(config)
 messaging_api = MessagingApi(api_client)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 # Connect to the database
 def get_db_connection():
     conn = psycopg2.connect(SUPABASE_URL)
+    print(f'SUPABASE_URL: {SUPABASE_URL}')
     return conn
 
 @app.route("/", methods=['GET'])
@@ -73,7 +75,8 @@ def handle_message(event):
         try:
             _, item_name, item_description, price = text.split(maxsplit=3)
             price = float(price)
-            save_item_to_db(item_name, item_description, price)
+            item = Item(item_name, item_description, price)
+            item.save_to_db()
             messaging_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
@@ -96,6 +99,12 @@ def save_item_to_db(item_name, item_description, price):
                 (item_name, item_description, price)
             )
         conn.commit()
+
+def save_item_to_db(item_name, item_description, price):
+    response = supabase.table("item").insert({"name": item_name, "description": item_description, "price": price}).execute()
+    if response.status_code != 201:
+        raise Exception(f"Failed to insert item: {response.status_code}")
+
 
 if __name__ == "__main__":
     app.run()
