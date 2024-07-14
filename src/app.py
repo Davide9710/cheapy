@@ -22,7 +22,7 @@ from item import Item
 app = Flask(__name__)
 
 SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_ANON_KEY')
+SUPABASE_ANON_KEY = os.getenv('SUPABASE_ANON_KEY')
 LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
 
@@ -32,7 +32,7 @@ api_client = ApiClient(config)
 messaging_api = MessagingApi(api_client)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 # Connect to the database
 def get_db_connection():
@@ -76,7 +76,7 @@ def handle_message(event):
             _, item_name, item_description, price = text.split(maxsplit=3)
             price = float(price)
             item = Item(item_name, item_description, price)
-            item.save_to_db()
+            item.save_to_db(supabase)
             messaging_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
