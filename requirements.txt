@@ -3,3 +3,4 @@ line-bot-sdk
 supabase
 python-dotenv
 gunicorn
+psycopg2
