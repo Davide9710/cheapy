@@ -40,7 +40,7 @@ def get_db_connection():
 
 @app.route("/", methods=['GET'])
 def home():
-    return "Hello, this is the Line bot server!"
+    return "Hello, this is the Line bot server! V2"
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -77,7 +77,7 @@ def handle_message(event):
             messaging_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
-                    messages=[TextMessage(text=f"Item '{item_name}' created successfully!")]
+                    messages=[TextMessage(text=f"Item '{item_name}' created successfully! V2")]
                 )
             )
         except ValueError as e:
