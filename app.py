@@ -40,7 +40,7 @@ def get_db_connection():
 
 @app.route("/", methods=['GET'])
 def home():
-    return "Hello, this is the Line bot server! V2"
+    return "Hello, this is the Line bot server! V3"
 
 @app.route("/callback", methods=['POST', 'GET'])
 def callback():
