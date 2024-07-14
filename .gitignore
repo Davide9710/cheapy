@@ -1,3 +1,4 @@
 .env
 /linebotenv
 __pycache__/
+.vercel
