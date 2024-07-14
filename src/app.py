@@ -26,6 +26,8 @@ SUPABASE_ANON_KEY = os.getenv('SUPABASE_ANON_KEY')
 LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
 
+print(f'SUPABASE_ANON_KEY: {SUPABASE_ANON_KEY}')
+
 # Initialize MessagingApi and WebhookHandler
 config = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 api_client = ApiClient(config)
