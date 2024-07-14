@@ -91,14 +91,6 @@ def handle_message(event):
                 )
             )
 
-def save_item_to_db(item_name, item_description, price):
-    with get_db_connection() as conn:
-        with conn.cursor() as cur:
-            cur.execute(
-                "INSERT INTO item (name, description, price) VALUES (%s, %s, %s)",
-                (item_name, item_description, price)
-            )
-        conn.commit()
 
 def save_item_to_db(item_name, item_description, price):
     response = supabase.table("item").insert({"name": item_name, "description": item_description, "price": price}).execute()
