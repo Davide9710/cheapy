@@ -42,7 +42,7 @@ def get_db_connection():
 def home():
     return "Hello, this is the Line bot server! V2"
 
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods=['POST', 'GET'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
