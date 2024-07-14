@@ -17,7 +17,7 @@ from linebot.v3.exceptions import InvalidSignatureError
 from supabase import create_client, Client
 import psycopg2
 import os
-from item import Item
+from .item import Item
 
 app = Flask(__name__)
 

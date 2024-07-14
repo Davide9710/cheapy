@@ -1,4 +1,4 @@
-from supabase import create_client, Client
+from supabase import Client
 
 class Item:
     def __init__(self, name: str, description: str, price: float):
