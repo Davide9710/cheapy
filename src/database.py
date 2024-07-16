@@ -12,5 +12,5 @@ def save_item_to_db(item: Item):
          "description": item.description, 
          }
     ).execute()
-    if response.get('error'):
-        raise Exception(f"Failed to insert item: {response['error'].get('message', 'Unknown error')}")
+    if response.error:
+        raise Exception(f"Failed to insert item: {response.error.message}")
