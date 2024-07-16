@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Optional
 
 @dataclass
 class User:
@@ -8,7 +9,7 @@ class User:
 
 @dataclass
 class Item:
-    id: int
+    id: Optional[int] = field(default=None)
     name: str
     category: str
     price: float

@@ -3,31 +3,31 @@ from ..database import save_item_to_db
 # States for the item creation process
 class AskingItemNameState:
     def handle(self, user, message):
-        user.temp_item = {'name': message}
+        user.temp_item.name = message
         return "Great! Now, what category does this item belong to?", 'asking_item_category'
 
 class AskingItemCategoryState:
     def handle(self, user, message):
-        user.temp_item['category'] = message
+        user.temp_item.category = message
         return "Excellent. What's the price of the item?", 'asking_item_price'
 
 class AskingItemPriceState:
     def handle(self, user, message):
         try:
             price = float(message)
-            user.temp_item['price'] = price
+            user.temp_item.price = price
             return f"Got it. Can you provide a brief description of the item?", 'asking_item_description'
         except ValueError:
             return "Please enter a valid number for the price.", 'asking_item_price'
 
 class AskingItemDescriptionState:
     def handle(self, user, message):
-        user.temp_item['description'] = message
+        user.temp_item.description = message
         return "Thanks! Here's a summary of the item. Is this correct? (Yes/No)\n" + \
-               f"Name: {user.temp_item['name']}\n" + \
-               f"Category: {user.temp_item['category']}\n" + \
-               f"Price: ${user.temp_item['price']:.2f}\n" + \
-               f"Description: {user.temp_item['description']}", 'confirming_item'
+               f"Name: {user.temp_item.name}\n" + \
+               f"Category: {user.temp_item.category}\n" + \
+               f"Price: ${user.temp_item.price:.2f}\n" + \
+               f"Description: {user.temp_item.description}", 'confirming_item'
 
 class ConfirmingItemState:
     def handle(self, user, message):
