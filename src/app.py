@@ -32,7 +32,7 @@ def handle_text_message(event):
 
 @app.route("/", methods=['GET'])
 def home():
-    return "Hello, this is the Line bot server!"
+    return "Hello, this is Cheapy!"
 
 if __name__ == "__main__":
     app.run()

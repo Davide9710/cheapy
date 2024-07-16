@@ -33,9 +33,6 @@ class ConfirmingItemState:
     def handle(self, user, message):
         if message.lower() == 'yes':
             # Save the item to the database
-            print("user.temp_item")
-            print(user.temp_item)
-
             item_id = save_item_to_db(user.temp_item)
             user.temp_item = None  # Clear the temporary item
             return f"Great! Your item has been created with ID: {item_id}. What would you like to do next?", 'main_menu'
