@@ -4,8 +4,8 @@ from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 from linebot.v3.messaging import Configuration, ApiClient, MessagingApi
 
-from .controllers import handle_message
-from .config import LINE_CHANNEL_SECRET, LINE_CHANNEL_ACCESS_TOKEN
+from src.controllers import handle_message
+from src.config import LINE_CHANNEL_SECRET, LINE_CHANNEL_ACCESS_TOKEN
 
 app = Flask(__name__)
 

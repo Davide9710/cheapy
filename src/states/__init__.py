@@ -1,6 +1,6 @@
-from .initial import InitialState
-from .awaiting_input import AwaitingInputState
-from .create_item_states import *
+from initial import InitialState
+from awaiting_input import AwaitingInputState
+from create_item_states import *
 
 states = {
     'initial': InitialState(),

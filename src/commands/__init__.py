@@ -1,6 +1,6 @@
-from .start import StartCommand
-from .help import HelpCommand
-from .create_item import CreateItemCommand
+from start import StartCommand
+from help import HelpCommand
+from create_item import CreateItemCommand
 
 commands = {
     'start': StartCommand(),
