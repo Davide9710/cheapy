@@ -12,5 +12,5 @@ def save_item_to_db(item: Item):
          "description": item.description, 
          }
     ).execute()
-    if response.status_code != 201:
-        raise Exception(f"Failed to insert item: {response.status_code}")
+    if response.get('error'):
+        raise Exception(f"Failed to insert item: {response['error'].get('message', 'Unknown error')}")
