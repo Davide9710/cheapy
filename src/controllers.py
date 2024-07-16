@@ -20,6 +20,7 @@ def handle_message(event, line_bot_api: MessagingApi):
         response, new_state = state.handle(user, message)
         user.state = new_state
     
+    print(f'reponse: {response}')
     users[user_id] = user
     line_bot_api.reply_message(
         ReplyMessageRequest(

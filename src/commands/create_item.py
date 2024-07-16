@@ -2,4 +2,5 @@
 class CreateItemCommand:
     def execute(self, user, args):
         user.state = 'asking_item_name'
+        print("Let's create a new item. What's the name of the item?")
         return "Let's create a new item. What's the name of the item?"
