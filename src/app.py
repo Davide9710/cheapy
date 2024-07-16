@@ -30,5 +30,9 @@ def handle_text_message(event):
         line_bot_api = MessagingApi(api_client)
         handle_message(event, line_bot_api)
 
+@app.route("/", methods=['GET'])
+def home():
+    return "Hello, this is the Line bot server!"
+
 if __name__ == "__main__":
     app.run()
