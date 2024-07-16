@@ -1,4 +1,4 @@
-from database import save_item_to_db
+from ..database import save_item_to_db
 
 # States for the item creation process
 class AskingItemNameState:
