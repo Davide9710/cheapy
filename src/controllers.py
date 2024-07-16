@@ -4,7 +4,7 @@ from states import get_state
 from models import User
 from views import create_text_response
 
-users = {}  # In-memory user storage. In a real app, use a database.
+users = {}  # In-memory user storage, storing the state of the conversation. Stores item partial data during convers.
 
 def handle_message(event, line_bot_api: MessagingApi):
     user_id = event.source.user_id
