@@ -8,6 +8,7 @@ states = {
     'asking_item_name': AskingItemNameState(),
     'asking_item_category': AskingItemCategoryState(),
     'asking_item_price': AskingItemPriceState(),
+    'asking_item_description': AskingItemDescriptionState(),
     'confirming_item': ConfirmingItemState()
 }
 
