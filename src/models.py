@@ -9,8 +9,8 @@ class User:
 
 @dataclass
 class Item:
-    id: Optional[int] = field(default=None)
     name: str
     category: str
     price: float
     description: str
+    id: Optional[int] = field(default=None)

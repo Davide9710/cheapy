@@ -26,7 +26,7 @@ class AskingItemDescriptionState:
         return "Thanks! Here's a summary of the item. Is this correct? (Yes/No)\n" + \
                f"Name: {user.temp_item.name}\n" + \
                f"Category: {user.temp_item.category}\n" + \
-               f"Price: ${user.temp_item.price:.2f}\n" + \
+               f"Price: ¥{user.temp_item.price:.2f}\n" + \
                f"Description: {user.temp_item.description}", 'confirming_item'
 
 class ConfirmingItemState:
